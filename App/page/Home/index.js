@@ -4,12 +4,14 @@ import {
     View,StyleSheet,Dimensions
 } from "react-native";
 import Swiper from 'react-native-swiper';
-import { PricingCard } from 'react-native-elements';
+import  {Bar,Pie,Circle,CircleSnail} from 'react-native-progress';
+// import { PricingCard } from 'react-native-elements';
 import Card from "../../components/Card";
 
-const {width,height} = Dimensions.get("window")
+const {width,height,scale} = Dimensions.get("window")
 class Home extends Component {
     render() {
+
         return (
             <View style={styles.home_body}>
                 <View   style={styles.container}>
@@ -48,8 +50,34 @@ class Home extends Component {
             {/*    我的订阅 */}
                 <View style={styles.mySubscript}>
                     <TouchableOpacity>
-                        <Text>我的订阅</Text>
+                        <Text style={styles.mySubscriptText}>我的订阅</Text>
                     </TouchableOpacity>
+                   <View style={styles.mySubscriptBody}>
+                      <View style={styles.mySubscriptLeft}>
+                          <Text style={styles.mySubscriptHeadText}>基础订阅 B 型</Text>
+                          <Text style={styles.mySubscriptCenterText}>于 2021/03/22 到期，距离到期还有 28 天，6 日后重置流量</Text>
+                          <Bar progress={0.2} width={width/(scale-1)} height={4} color={'#82b54b'} borderWidth={0} unfilledColor={'#e9ecef'}/>
+                          <Text style={styles.mySubscriptBottom}>
+                              已用 <Text style={styles.mySubscriptBold}>6.37 GB</Text> / 总计
+                              <Text style={styles.mySubscriptBold}>500.00 GB</Text>
+                          </Text>
+                      </View>
+                   </View>
+                    {/*<Pie progress={0.4}  />*/}
+                    {/*<Circle  />*/}
+                    {/*<CircleSnail color={['red', 'green', 'blue']} />*/}
+                </View>
+                {/*    使用文档*/}
+                <View style={styles.useDoc}>
+                    <Text>使用文档</Text>
+                    <View style={styles.useDocBody}>
+                        <View style={styles.useDocTextBody}>
+                            <Text style={styles.useDocTex}>客户端</Text>
+                            <View>
+
+                            </View>
+                        </View>
+                    </View>
                 </View>
             </View>
         );
@@ -110,7 +138,75 @@ const styles = StyleSheet.create({
         width:width,
         height:100,
         marginTop: 30,
-        backgroundColor:'#819FF7'
+        // backgroundColor:'#819FF7'
+    },
+
+    mySubscriptText:{
+        fontSize: 20,
+        color: '#6E6E6E',
+        marginBottom:10
+    },
+    mySubscriptBody:{
+        width:width,
+        height:100,
+        backgroundColor:'#fff',
+        justifyContent:'center',
+        // marginLeft:20
+    },
+    mySubscriptLeft:{
+        width:width,
+        height:100,
+        marginLeft:20,
+        // backgroundColor:'#fff',
+        justifyContent:'center',
+    },
+    mySubscriptHeadText:{
+        fontSize:14,
+        marginBottom:3,
+        // color: '#6E6E6E',
+    },
+    mySubscriptCenterText:{
+        fontSize:8,
+        marginBottom:3,
+        color: '#6E6E6E',
+    },
+    mySubscriptBottom:{
+        marginTop:2,
+        fontSize:8,
+        color: '#6E6E6E',
+    },
+    mySubscriptBold:{
+        fontWeight:'bold',
+        color:'#000000'
+    },
+//    使用文档
+    useDoc:{
+        width:width,
+        height:100,
+        marginTop:50,
+        // backgroundColor:'#fff',
+    },
+    useDocBody:{
+        width:width,
+        height:100,
+        backgroundColor:'#fff',
+    },
+    useDocTextBody:{
+        width:width,
+        height:100,
+        // marginLeft: 20,
+        // fontSize:14,
+        // backgroundColor:'#fcfcfd',
+        // justifyContent:'center'
+    },
+    useDocTex:{
+        width:width,
+        height:40,
+        fontSize:14,
+        // textIndent:20,
+        backgroundColor:'#58ACFA',
+        lineHeight:40
+        // justifyContent:'center',
     }
 });
 
