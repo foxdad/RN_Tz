@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Text, View,FlatList} from "react-native";
+import {Text, View,StyleSheet} from "react-native";
 import ListItemComponent from "../../components/ListItemComponent";
 
 
@@ -9,7 +9,7 @@ class User extends Component {
 
 
         return (
-            <View>
+            <View style={styles.userBody}>
                 <Text>用户</Text>
             {/*    修改密码*/}
             {/*我的工单*/}
@@ -22,5 +22,11 @@ class User extends Component {
         );
     }
 }
+const styles = StyleSheet.create({
+    userBody :{
+        flex:1,
+        backgroundColor:"#F2F2F2"
+    }
+})
 
 export default User;
