@@ -1,90 +1,103 @@
 import React, {Component} from 'react';
-import {Text, View, StyleSheet, FlatList} from "react-native";
+import {Text, View, StyleSheet, Dimensions, Image, TouchableOpacity} from "react-native";
 import ListItemComponent from "../../components/ListItemComponent";
-import {Avatar} from "react-native-elements";
 
-const itemList = [
-    {title:"我的工单",iconUrl:"../../public/user/flux.png"},
-    {title:"我的余额",iconUrl:"../../public/user/flux.png"},
-    {title:"我的订单",iconUrl:"../../public/user/flux.png"},
-    {title:"我的邀请",iconUrl:"../../public/user/flux.png"},
-    {title:"修改密码",iconUrl:"../../public/user/flux.png"}
-]
-
-
-
-
+const {width} = Dimensions.get('window')
 class User extends Component {
+
     render() {
-
-       const rendData = (item)  => {
-            return (
-                <View style={styles.itemBody}>
-                    <View style={styles.listItemBody}>
-                        <Avatar style={styles.itemImage} source={require({item.iconUrl})}/>
-                        <Text style={styles.itemText}>流量明细</Text>
-                        <View style={styles.iconToDetails}></View>
-                    </View>
-
-                </View>
-            )
-        }
-
-
         return (
-            <View style={styles.userBody}>
-                <Text>用户</Text>
-            {/*    修改密码*/}
-            {/*我的工单*/}
-            <FlatList data={itemList} renderItem={rendData}/>
-            <ListItemComponent imgUrlT={"../../public/user/flux.png"}/>
-            {/*我的订单*/}
-            {/*我的邀请*/}
-            {/*流量明细*/}
+           <View style={styles.userBody}>
 
-            </View>
-        );
+              {/* 用户头像展示区*/}
+              <View style={styles.headContainer}>
+                 <View style={styles.headContainerMargin}>
+                     <Text style={styles.userName}>用户</Text>
+                     {/*    头像    */}
+                     <Image style={styles.defaultImg} source={require("../../public/randomImg/avater.jpg")}/>
+                     {/*昵称*/}
+                     <Text style={styles.nickName}>1519974398@qq.com</Text>
+                 </View>
+
+              </View>
+              {/* 功能集合*/}
+              <View style={styles.centerContainer}>
+                  <ListItemComponent text={"我的订单"} imgUrl={"order"} />
+                  <ListItemComponent text={"我的邀请"} imgUrl={"inviter"} flag={true}/>
+                  <ListItemComponent text={"我的工单"} imgUrl={"work_order"} flag={true}/>
+                  <ListItemComponent text={"流量明细"} imgUrl={"flux"} flag={true}/>
+              </View>
+           {/*    退出登录*/}
+            <TouchableOpacity style={styles.logout} activeOpacity={0.8}>
+                <Text>
+                    退出登录
+                </Text>
+            </TouchableOpacity>
+           </View>
+        )
     }
 }
+
+
 const styles = StyleSheet.create({
     userBody :{
         flex:1,
-        backgroundColor:"#F2F2F2"
-    },
-    itemBody:{
-        justifyContent:"center",
-        // alignItems:"center"
+        backgroundColor:"#F2F2F2",
+        alignItems:"center"
 
     },
-    listItemBody:{
+    headContainer:{
+        width:width,
+        height:80,
+        backgroundColor:"#027AFF"
+    },
+    headContainerMargin:{
+        marginLeft:"2%",
+        // justifyContent:"center"
+    },
+    defaultImg:{
+        width:40,
+        height: 40,
+        borderWidth: 1,
+        borderColor: "#00A0E9",
+        borderRadius: 5,
+        marginTop:"2%"
+
+    },
+    userName:{
+        fontSize:15,
+        color:"#FAFAFA",
+    },
+    nickName:{
+        position:"absolute",
+        top:"55%",
+        left:"10%",
+        color: "#FAFAFA"
+
+    },
+
+    centerContainer:{
+        width:"98%",
+        borderWidth:1,
+        borderColor:"#FAFAFA",
+        backgroundColor: "#FAFAFA",
+        borderRadius:10,
+        marginTop:10,
+    },
+//    退出登录
+    logout:{
         width:"98%",
         height:30,
         borderWidth:1,
-        borderColor:"#FF0000",
-        // justifyContent:"space-between",
-        flexDirection:"row",
-        alignItems:"center"
-    },
-    itemImage:{
-        width:30,
-        height: 30
-    },
-    itemText:{
-        fontSize:12,
-        marginLeft:5,
-    },
-    iconToDetails:{
-        position:"absolute",
-        right:5,
-        // top:15,
-        // left:30,
-        width: 8,
-        height: 8,
-        borderColor:'#666',
-        borderTopWidth:2,
-        borderRightWidth:2,
-        transform:[{rotate: '45deg'}],
+        borderColor:"#FAFAFA",
+        borderRadius:5,
+        marginTop: "30%",
+        alignItems: "center",
+        justifyContent:"center",
+        backgroundColor:"#00A0E9"
     }
 })
 
 export default User;
+
+

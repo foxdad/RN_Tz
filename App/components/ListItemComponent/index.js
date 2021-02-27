@@ -1,36 +1,53 @@
 import React, {Component} from 'react';
-import {View, StyleSheet, Dimensions, Text, Image} from "react-native";
-import {ListItem,Avatar} from "react-native-elements";
+import {View, StyleSheet, Dimensions, Text,TouchableOpacity} from "react-native";
+import {Avatar} from "react-native-elements";
+import im_arr from "./im_arr";
 
 const {width} = Dimensions.get('window');
-const imgUrl = "../../public/user/flux.png"
 class ListItemComponent extends Component {
-
     render() {
+        const {imgUrl,text,flag} = this.props
         return (
             <View style={styles.itemBody}>
-                <View style={styles.listItemBody}>
-                    <Avatar style={styles.itemImage} source={require(imgUrl)}/>
-                    <Text style={styles.itemText}>流量明细</Text>
-                   <View style={styles.iconToDetails}></View>
-                </View>
+                {
+                    flag?<View style={styles.hr}>
+
+                    </View>:null
+                }
+                <TouchableOpacity style={styles.listItemBody}>
+                    <Avatar style={styles.itemImage} source={im_arr[imgUrl]}/>
+                    <Text style={styles.itemText}>{text}</Text>
+                    <View style={styles.iconToDetails}></View>
+                </TouchableOpacity>
 
             </View>
         );
     }
 }
+export default ListItemComponent;
+
 const styles = StyleSheet.create({
 
     itemBody:{
+        width:"100%",
         justifyContent:"center",
         // alignItems:"center"
 
     },
-    listItemBody:{
+    hr:{
+        position:"absolute",
+        top:0,
+        right: 0,
         width:"98%",
-        height:30,
-        borderWidth:1,
-        borderColor:"#FF0000",
+        borderTopWidth:0.8,
+        borderColor:"#E6E6E6",
+    },
+    listItemBody:{
+        // width:"80%",
+        height:35,
+        // borderWidth:1,
+        // borderTopWidth: 1,
+        // borderColor:"#E6E6E6",
         // justifyContent:"space-between",
         flexDirection:"row",
         alignItems:"center"
@@ -45,17 +62,18 @@ const styles = StyleSheet.create({
     },
     iconToDetails:{
         position:"absolute",
-        right:5,
+        right:10,
         // top:15,
         // left:30,
         width: 8,
         height: 8,
-        borderColor:'#666',
-        borderTopWidth:2,
-        borderRightWidth:2,
+        borderColor:"#D8D8D8",
+        borderTopWidth:1,
+        borderRightWidth:1,
         transform:[{rotate: '45deg'}],
     }
 
 })
 
-export default ListItemComponent;
+
+
