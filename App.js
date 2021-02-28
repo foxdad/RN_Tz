@@ -17,7 +17,7 @@ class App extends Component {
 
 const styles = StyleSheet.create({
   body:{
-    flex:1
+    flex:1,
   }
 })
 
