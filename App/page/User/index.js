@@ -4,8 +4,12 @@ import ListItemComponent from "../../components/ListItemComponent";
 
 const {width} = Dimensions.get('window')
 class User extends Component {
+    constructor(props) {
+        super(props);
+    }
 
     render() {
+
         return (
            <View style={styles.userBody}>
 
@@ -28,7 +32,7 @@ class User extends Component {
                   <ListItemComponent text={"流量明细"} imgUrl={"flux"} flag={true}/>
               </View>
            {/*    退出登录*/}
-            <TouchableOpacity style={styles.logout} activeOpacity={0.8}>
+            <TouchableOpacity style={styles.logout} activeOpacity={0.8} onPress={()=>{}}>
                 <Text>
                     退出登录
                 </Text>

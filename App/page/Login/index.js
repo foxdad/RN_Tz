@@ -1,10 +1,24 @@
 import React, {Component} from 'react';
 import {View, StyleSheet, ImageBackground, Text, Dimensions, TextInput, TouchableOpacity} from "react-native";
+import User from "../User";
 
 const {width,height}  = Dimensions.get('window')
 
 class Login extends Component {
+    constructor(props) {
+        super(props);
+    }
+
+    login() {
+        this.props.navigation.navigate('User')
+    }
+    register() {
+
+    }
+
     render() {
+
+        // const { navigation } = this.props
         return (
         <ImageBackground  source={require("../../public/randomImg/LoginBack.jpg")} style={{flex:1}}>
                 <View style={styles.loginContainer}>
@@ -16,7 +30,7 @@ class Login extends Component {
                         {/*中间的线*/}
                         <View style={styles.hr}></View>
                         <Text style={styles.passText}>密码</Text>
-                        <TextInput style={styles.passInput} placeholder={"请输入密码"}/>
+                        <TextInput textContentType="password" style={styles.passInput} placeholder={"请输入密码"}/>
                          {/* 忘记密码    */}
                          <TouchableOpacity style={styles.forgetPass}>
                              <Text style={styles.forgetText}>忘记密码？</Text>
@@ -25,10 +39,14 @@ class Login extends Component {
                    </View>
                     {/*  注册登录按钮  */}
                     <View style={styles.buttonBody}>
-                        <TouchableOpacity style={styles.registerButton} activeOpacity={0.8}>
+                        {/*
+                         onPress={() => this.props.navigation.navigate('User')}
+                        */}
+                        <TouchableOpacity style={styles.registerButton} activeOpacity={0.8} >
                             <Text style={styles.buttonText}>注册</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.loginButton} activeOpacity={0.8}>
+                        {/*onPress={()=>{navigation.navigate("User")}}*/}
+                        <TouchableOpacity style={styles.loginButton} activeOpacity={0.8} onPress={() =>this.login()}>
                             <Text style={styles.buttonText}>登录</Text>
                         </TouchableOpacity>
                     </View>
@@ -46,7 +64,7 @@ const styles = StyleSheet.create({
         flex:1,
         alignItems: "center",
         // justifyContent:"center",
-        backgroundColor: "#F2F2F2",
+        // backgroundColor: "#F2F2F2",
     },
     body:{
         width:"100%",
@@ -54,7 +72,8 @@ const styles = StyleSheet.create({
         marginTop:"40%",
         backgroundColor:"#f5f6fa",
         borderWidth:1,
-        borderColor:"#f5f6fa"
+        borderColor:"#f5f6fa",
+
     },
     title:{
         fontSize:26,
@@ -83,6 +102,7 @@ const styles = StyleSheet.create({
         height: 30,
         // borderWidth: 1,
         padding:0,
+        opacity: 0.5
 
     },
     passInput:{
@@ -93,18 +113,21 @@ const styles = StyleSheet.create({
         height: 30,
         // borderWidth: 1,
         padding:0,
+        opacity: 0.5
 
     },
     mailText:{
         position:"absolute",
         top:5,
         left:10,
+        opacity: 0.5
 
     },
     passText:{
         position:"absolute",
         bottom:5,
         left:10,
+        opacity: 0.5
     },
     forgetPass:{
         position:"absolute",
